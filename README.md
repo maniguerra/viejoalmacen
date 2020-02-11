@@ -10,8 +10,8 @@ Los primeros a editarla y/o eliminarla.
 Unidades de Medida
 - Estas no son modificables, existen 5 unidades: Kilo, Litro, Gramo, Centímetro cúbico y Unidad.
 
-- Ingredientes
-El sistema permite la carga de ingredientes, que tienen un nombre, una unidad de medida y un precio por cada 
+Ingredientes
+- El sistema permite la carga de ingredientes, que tienen un nombre, una unidad de medida y un precio por cada 
 unidad de medida.
 
 - Clientes
@@ -21,7 +21,7 @@ Los clientes son quienes consumen viandas preestablecidas.
 Las viandas pertenecen a un cliente y estan formada por ingredientes y una cantidad establecida de cada uno de estos
 
 # Funcionalidades 
-#Las dos funcionalidades principales del sistema son
+- Las dos funcionalidades principales del sistema son
 - Impresion de remitos
 En el apartado principal del sistema, el usuario podrá seleccionar un cliente. Una vez hecho esto podra 
 elegir el tipo de vianda que le entregará al cliente (Comedor, DMC o ambas), una vez seleccionado esto se eligen
@@ -32,6 +32,7 @@ Al crear un ingrediente se coloca su precio. Esto permite conocer el precio exac
 Al modificarse un precio de un ingrediente, se deberán modificar todos los precios de las viandas que lo contengan.
 
 #Plugins Necesarios
+
 AdminLTE3
 jQuery
 BootsTrap 4
