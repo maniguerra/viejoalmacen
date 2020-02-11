@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Viandas<small> - Viejo Almacén</small></h1>
+                    <h1>Menús<small> - Viejo Almacén</small></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    
-                        <li class="breadcrumb-item"><i class="fas fa-utensils"></i> </li>
-                        <li class="breadcrumb-item active">Viandas</li>
+
+                        <li class="breadcrumb-item"><i class="fas fa-users-cog"></i></li>
+                        <li class="breadcrumb-item active">Menús</li>
                     </ol>
                 </div>
             </div>
@@ -24,28 +24,79 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Administrar Viandas</h3>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                        <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
-                        title="Remove">
-                        <i class="fas fa-times"></i></button>
-                </div>
+                <a href="crear-menu">
+                    <button class="btn btn-info">
+                        Agregar Menú
+                    </button>
+                </a>
             </div>
+
+
+
             <div class="card-body">
-                Start creating your amazing application!
+                <table class="table table-bordered table-striped dt-responsive tablas tablaViandas" width="100%">
+
+                    <thead>
+                        <tr>
+                            <th style="width:10px">#</th>
+                            <th>Menú</th>
+                            <th>Cliente</th>
+                            <th>Costo</th>
+                            <th>Tipo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <?php
+                        $item = null;
+                        $valor = null;
+                        $respuesta = ControladorViandas::ctrMostrarViandas($item,$valor);
+
+                        foreach($respuesta as $key => $value){
+                            echo '  <tr>
+                            <td>'.($key + 1).'</td>
+                            <td>'.$value["nombre"].'</td>';
+                            $itemCliente = "id";
+                            $valorCliente = $value["id_cliente"];
+                            $respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente,$valorCliente);
+
+                            echo '<td>'.$respuestaCliente["establecimiento"].' - '.$respuestaCliente["partido"].'</td>
+                            <td>$ '.number_format($value["costo"],2).'</td>
+                            <td>';
+
+                            if($value["dmc"] == "si"){
+                                echo 'DMC';
+                            } else { echo 'Comedor'; }
+                            
+                            echo '</td>
+                            <td>
+                                <a href="index.php?ruta=editar-menu&idMenu='.$value["id"].'"><button class="btn btn-warning"><i class="fa fa-pencil-alt"></i></button></a>
+                                <button class="btn btn-danger btnEliminarVianda" idMenu="'.$value["id"].'"><i class="fa fa-times"></i></button>
+                            </td>';
+                        }
+                    ?>
+
+                      
+
+
+
+                    </tbody>
+
+                </table>
             </div>
             <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
+
         </div>
         <!-- /.card -->
 
     </section>
     <!-- /.content -->
 </div>
+
+<?php
+
+$eliminarVianda = new ControladorViandas();
+$eliminarVianda -> ctrEliminarVianda();
+?>

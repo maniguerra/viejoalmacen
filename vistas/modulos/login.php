@@ -2,12 +2,8 @@
 
 </div>
 
-<div class="login-box">
-    <div class="login-logo">
-        <img src="vistas\img\logos\logo_transparent.png" class="img-responsive"
-            style="padding: 30px 100px 0px 100px; width: 100%">
-    </div>
-    <!-- /.login-logo -->
+<div class="login-box" id="body-login">
+    
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Ingresar al Sistema</p>
@@ -36,7 +32,7 @@
 
                     <!-- /.col -->
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+                        <button type="submit" class="btn btn-info btn-block btn-flat">Ingresar</button>
                     </div>
                     <!-- /.col -->
                 </div>

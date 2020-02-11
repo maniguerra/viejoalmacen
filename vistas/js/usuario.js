@@ -2,14 +2,14 @@
 EDITAR USUARIO
 =========================================*/
 
-$(document).on("click", ".btnEditarUsuario", function(){
-        
+$(document).on("click", ".btnEditarUsuario", function() {
+
     var idUsuario = $(this).attr("idUsuario");
-   
-    
+
+
     var datos = new FormData();
     datos.append("idUsuario", idUsuario);
-   
+
     $.ajax({
 
         url: "ajax/usuarios.ajax.php",
@@ -19,7 +19,7 @@ $(document).on("click", ".btnEditarUsuario", function(){
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta){
+        success: function(respuesta) {
             $("#editarUsuario").val(respuesta["usuario"]);
             $("#editarPerfil").html(respuesta["perfil"]);
             $("#editarPerfil").val(respuesta["perfil"]);
@@ -34,7 +34,7 @@ $(document).on("click", ".btnEditarUsuario", function(){
 REVISAR USUARIO REPETIDO
 =========================================*/
 
-$("#nuevoUsuario").change(function(){
+$("#nuevoUsuario").change(function() {
 
     $(".alert").remove();
     var usuario = $(this).val();
@@ -44,19 +44,19 @@ $("#nuevoUsuario").change(function(){
     datos.append("validarUsuario", usuario);
 
     $.ajax({
-        url:"ajax/usuarios.ajax.php",
+        url: "ajax/usuarios.ajax.php",
         method: "POST",
         data: datos,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success:function(respuesta){
-           if(respuesta){
-               $("#nuevoUsuario").parent().after('<div class="d-block alert alert-warning">Este usuario ya existe en la base de datos</div>');
+        success: function(respuesta) {
+            if (respuesta) {
+                $("#nuevoUsuario").parent().after('<div class="d-block alert alert-warning">Este usuario ya existe en la base de datos</div>');
 
-               $("#nuevoUsuario").val("");
-           }
+                $("#nuevoUsuario").val("");
+            }
 
         }
     });
@@ -68,7 +68,7 @@ $("#nuevoUsuario").change(function(){
 ELIMINAR USUARIO
 =========================================*/
 
-$(document).on("click", ".btnEliminarUsuario", function(){
+$(document).on("click", ".btnEliminarUsuario", function() {
 
     var idUsuario = $(this).attr("idUsuario");
     swal.fire({
@@ -80,11 +80,11 @@ $(document).on("click", ".btnEliminarUsuario", function(){
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Si, borrar usuario'
-    }).then((result)=>{
-        if(result.value){
-            window.location = 'index.php?ruta=usuarios&idUsuario='+idUsuario;
+    }).then(function(result) {
+            if (result.value) {
+                window.location = 'index.php?ruta=usuarios&idUsuario=' + idUsuario;
+            }
         }
-    }
-    
+
     )
 })

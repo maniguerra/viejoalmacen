@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    
+
                         <li class="breadcrumb-item"><i class="fas fa-users-cog"></i></li>
                         <li class="breadcrumb-item active">Unidades de Medida</li>
                     </ol>
@@ -24,7 +24,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-               <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUnidad">
+                <button class="btn btn-info" data-toggle="modal" data-target="#modalAgregarUnidad">
                     Agregar Unidad de Medida
                 </button>
             </div>
@@ -32,7 +32,7 @@
 
 
             <div class="card-body">
-                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+                <table class="table table-bordered table-striped dt-responsive tablas tablaUnidades" width="100%">
 
                     <thead>
                         <tr>
@@ -40,13 +40,13 @@
                             <th>Nombre</th>
                             <th>Nomenclatura</th>
                             <th>Acciones</th>
-                            
+
                         </tr>
                     </thead>
 
                     <tbody>
 
-                    <?php
+                        <?php
 
                     $item = null;
                     $valor = null;
@@ -72,13 +72,13 @@
                     ?>
 
 
-                       
+
                     </tbody>
 
                 </table>
             </div>
             <!-- /.card-body -->
-            
+
         </div>
         <!-- /.card -->
 
@@ -93,78 +93,81 @@ MODAL AGREGAR UNIDAD DE MEDIDA
 
 
 <!-- Modal -->
-<div class="modal fade" id="modalAgregarUnidad" tabindex="-1" role="dialog" aria-labelledby="modalAgregarUnidad" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+<div class="modal fade" id="modalAgregarUnidad" tabindex="-1" role="dialog" aria-labelledby="modalAgregarUnidad"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
 
 
-        <form role="form" method="post" action="">
+            <form role="form" method="post" action="">
 
 
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Agregar Unidad de Medida</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="card-body">
-         <div class="form-group">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Agregar Unidad de Medida</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="form-group">
 
-            <!-- Entrada para el nombre de Unidad de Medida-->
-            <div class="form-group">
+                            <!-- Entrada para el nombre de Unidad de Medida-->
+                            <div class="form-group">
 
-                <div class="input-group">
+                                <div class="input-group">
 
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-balance-scale-right"></i></span>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-balance-scale-right"></i></span>
+                                    </div>
+
+                                    <input class="form-control" type="text" id="nuevaUnidad" name="nuevaUnidad"
+                                        placeholder="Ingrese Nombre de Unidad de Medida" required>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Entrada para la nomenclatura -->
+                            <div class="form-group">
+
+                                <div class="input-group">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-weight-hanging"></i></span>
+                                    </div>
+
+                                    <input class="form-control" type="text" id="nuevaNomen" name="nuevaNomen"
+                                        placeholder="Ingrese Nomenclatura" required>
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                        </div>
                     </div>
-
-                    <input class="form-control" type="text" id="nuevaUnidad" name="nuevaUnidad" placeholder="Ingrese Nombre de Unidad de Medida"
-                        required>
-
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-info">Guardar</button>
                 </div>
 
-            </div>
-
-            <!-- Entrada para la nomenclatura -->
-            <div class="form-group">
-
-                <div class="input-group">
-
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-weight-hanging"></i></span>
-                    </div>
-
-                    <input class="form-control" type="text" id="nuevaNomen" name="nuevaNomen" placeholder="Ingrese Nomenclatura"
-                        required>
-
-                </div>
-
-            </div>
-
-           
-
-            
-
-
-         </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </div>
-
-                    <?php
+                <?php
 
                         $crearUnidad = new ControladorUnidades();
                         $crearUnidad -> ctrCrearUnidad();
                     ?>
-      
-      </form>
+
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- =========================================
@@ -173,80 +176,84 @@ MODAL EDITAR UNIDAD DE MEDIDA
 
 
 <!-- Modal -->
-<div class="modal fade" id="modalEditarUnidad" tabindex="-1" role="dialog" aria-labelledby="modalEditarUnidad" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+<div class="modal fade" id="modalEditarUnidad" tabindex="-1" role="dialog" aria-labelledby="modalEditarUnidad"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
 
 
-        <form role="form" method="post" action="">
+            <form role="form" method="post" action="">
 
 
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Editar Unidad de Medida</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="card-body">
-         <div class="form-group">
-
-            <!-- Entrada para el nombre de Unidad -->
-            <div class="form-group">
-
-                <div class="input-group">
-
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-balance-scale-right"></i></span>
-                    </div>
-
-                    <input class="form-control" type="text" name="editarUnidad" id="editarUnidad" required>
-                    <input type="hidden" id="idUnidad" name="idUnidad">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Editar Unidad de Medida</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="form-group">
 
-            </div>
+                            <!-- Entrada para el nombre de Unidad -->
+                            <div class="form-group">
+
+                                <div class="input-group">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-balance-scale-right"></i></span>
+                                    </div>
+
+                                    <input class="form-control" type="text" name="editarUnidad" id="editarUnidad"
+                                        required>
+                                    <input type="hidden" id="idUnidad" name="idUnidad">
+                                </div>
+
+                            </div>
 
 
-                <!-- Entrada para la nomenclatura -->
-                <div class="form-group">
+                            <!-- Entrada para la nomenclatura -->
+                            <div class="form-group">
 
-                    <div class="input-group">
+                                <div class="input-group">
 
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-weight-hanging"></i></span>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-weight-hanging"></i></span>
+                                    </div>
+
+                                    <input class="form-control" type="text" id="editarNomen" name="editarNomen"
+                                        placeholder="Ingrese Nomenclatura" required>
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
                         </div>
-
-                        <input class="form-control" type="text" id="editarNomen" name="editarNomen" placeholder="Ingrese Nomenclatura"
-                            required>
-                            
                     </div>
-
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-info">Guardar</button>
                 </div>
 
 
-          
-
-
-
-
-         </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </div>
-
-
-        <?php
+                <?php
 
             $editarUnidad = new ControladorUnidades();
             $editarUnidad -> ctrEditarUnidad();
         ?>
-      
-      </form>
+
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 
 <?php
@@ -254,5 +261,3 @@ MODAL EDITAR UNIDAD DE MEDIDA
             $eliminarUnidad = new ControladorUnidades();
             $eliminarUnidad -> ctrEliminarUnidad();
         ?>
-
-

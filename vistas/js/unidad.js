@@ -1,16 +1,15 @@
 /*=========================================
 EDITAR UNIDAD DE MEDIDA
 ========================================= */
+$(".tablaUnidades tbody").on('click', 'button.btnEditarUnidad', function() {
 
-$(".btnEditarUnidad").click(function(){
-    
     var idUnidad = $(this).attr("idUnidad");
-    
+
     var datos = new FormData();
-    
+
     datos.append("idUnidad", idUnidad);
-    
-    
+
+
     $.ajax({
         url: "ajax/unidades.ajax.php",
         method: "POST",
@@ -19,29 +18,31 @@ $(".btnEditarUnidad").click(function(){
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta){
-            
-            
+        success: function(respuesta) {
+
+
             $("#editarUnidad").val(respuesta["nombre"]);
             $("#editarNomen").val(respuesta["nomenclatura"]);
-            
+
             $("#idUnidad").val(respuesta["id"]);
-            
-            
-            
-            
+
+
+
+
         }
     })
-    
-    
-    
+
+
+
 })
 
 /*=========================================
 ELIMINAR UNIDAD DE MEDIDA
 ========================================= */
 
-$(".btnEliminarUnidad").click(function(){
+
+$(".tablaUnidades tbody").on('click', 'button.btnEliminarUnidad', function() {
+
 
     var idUnidad = $(this).attr("idUnidad");
 
@@ -54,12 +55,12 @@ $(".btnEliminarUnidad").click(function(){
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Si, borrar unidad'
-    }).then((result)=>{
-        if(result.value){
-            window.location = 'index.php?ruta=unidades&idUnidad='+idUnidad;
+    }).then(function(result) {
+            if (result.value) {
+                window.location = 'index.php?ruta=unidades&idUnidad=' + idUnidad;
+            }
         }
-    }
-    
+
     )
 
 })

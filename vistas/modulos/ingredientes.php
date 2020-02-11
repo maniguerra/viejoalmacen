@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    
+
                         <li class="breadcrumb-item"><i class="fas fa-users-cog"></i></li>
                         <li class="breadcrumb-item active">Ingredientes</li>
                     </ol>
@@ -24,7 +24,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-               <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarIngrediente">
+                <button class="btn btn-info" data-toggle="modal" data-target="#modalAgregarIngrediente">
                     Agregar Ingrediente
                 </button>
             </div>
@@ -34,23 +34,23 @@
             <div class="card-body">
                 <table class="table table-bordered table-striped dt-responsive  tablaIngredientes" width="100%">
 
-                        <thead>
-                                <tr>
-                                    <th style="width:10px">#</th>
-                                    <th>Ingrediente</th>
-                                    <th>Unidad de Medida</th>
-                                    <th>Precio de Costo</th>
-                                    <th>Acciones</th>
-                                </tr>
-                        </thead>
+                    <thead>
+                        <tr>
+                            <th style="width:10px">#</th>
+                            <th>Ingrediente</th>
+                            <th>Unidad de Medida</th>
+                            <th>Precio de Costo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-                         
-                        
 
-                </table> 
+
+
+                </table>
             </div>
             <!-- /.card-body -->
-            
+
         </div>
         <!-- /.card -->
 
@@ -65,73 +65,77 @@ MODAL AGREGAR INGREDIENTE
 
 
 <!-- Modal -->
-<div class="modal fade" id="modalAgregarIngrediente" tabindex="-1" role="dialog" aria-labelledby="modalAgregarIngrediente" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+<div class="modal fade" id="modalAgregarIngrediente" tabindex="-1" role="dialog"
+    aria-labelledby="modalAgregarIngrediente" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
 
 
-        <form role="form" method="post" action="">
+            <form role="form" method="post" action="">
 
 
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Agregar Ingrediente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="card-body">
-         <div class="form-group">
-
-            <!-- Entrada para el nombre de ingrediente -->
-            <div class="form-group">
-
-                <div class="input-group">
-
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                    </div>
-
-                    <input class="form-control" type="text" id="nuevoIngrediente" name="nuevoIngrediente" placeholder="Ingrese Nombre de Ingrediente"
-                        required>
-
+                <div class="modal-header">
+                    <h5 class="modal-title"  id="exampleModalLongTitle">Agregar Ingrediente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="form-group">
 
-            </div>
+                            <!-- Entrada para el nombre de ingrediente -->
+                            <div class="form-group">
 
-            <!-- Entrada para el precio de ingrediente -->
-            <div class="form-group">
+                                <div class="input-group">
 
-                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-seedling"></i></span>
+                                    </div>
 
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                    </div>
+                                    <input class="form-control" type="text" id="nuevoIngrediente"
+                                        name="nuevoIngrediente" placeholder="Ingrese Nombre de Ingrediente" required>
 
-                    <input class="form-control" type="text" id="nuevoPrecio" min="0" step="any" name="nuevoPrecio" placeholder="Ingrese Precio"
-                        required>
+                                </div>
 
-                </div>
+                            </div>
 
-            </div>
+                            <!-- Entrada para el precio de ingrediente -->
+                            <div class="form-group">
 
-           
+                                <div class="input-group">
 
-            
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-money-bill-wave"></i></span>
+                                    </div>
 
-            <!-- Entrada para la unidad de medida -->
-            <div class="form-group">
+                                    <input class="form-control" type="text" id="nuevoPrecio" min="0" step="any"
+                                        name="nuevoPrecio" placeholder="Ingrese Precio" required>
 
-                <div class="input-group">
+                                </div>
 
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-users"></i></span>
-                    </div>
+                            </div>
 
-                    <select class="form-control" name="nuevaUnidad" required>
-                        <option value="">Seleccionar Unidad de Medida</option>
-                        
-                        <?php
+
+
+
+
+                            <!-- Entrada para la unidad de medida -->
+                            <div class="form-group">
+
+                                <div class="input-group">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-weight-hanging"></i></span>
+                                    </div>
+
+                                    <select class="form-control" name="nuevaUnidad" required>
+                                        <option value="">Seleccionar Unidad de Medida</option>
+
+                                        <?php
 
                             $item = null;
                             $valor = null;
@@ -148,35 +152,45 @@ MODAL AGREGAR INGREDIENTE
                                 
 
                         ?>
-                        
-                    
-                    </select>
 
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="calculadora">
+                            <span class="text-danger d-flex justify-content-center mt-2 mb-2">Calculadora de Costo</span>
+                            <span class="text-muted small d-flex justify-content-center mb-1">Des esta forma usted podrá calcular el costo por milésima</span>
+                                <input class="form-control" type="text" id="preciokilo" placeholder="0">
+                                <span class="text-info small d-flex justify-content-center">Ingrese precio por Kilo/Litro</span><br>
+                                <input class="form-control" type="text" id="preciogramo" placeholder="0">
+                                <span class="text-info small d-flex justify-content-center">Este es el precio por Gramo/Centímetro Cúbico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-info">Guardar</button>
                 </div>
 
-            </div>
-
-            
-
-
-
-         </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </div>
-
-                                <?php
+                <?php
 
                                     $cargarIngrediente = new ControladorIngredientes();
                                     $cargarIngrediente -> ctrCargarIngrediente();
                                 ?>
-      
-      </form>
+
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- =========================================
@@ -185,71 +199,75 @@ MODAL EDITAR INGREDIENTE
 
 
 <!-- Modal -->
-<div class="modal fade" id="modalEditarIngrediente" tabindex="-1" role="dialog" aria-labelledby="modalEditarIngrediente" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+<div class="modal fade" id="modalEditarIngrediente" tabindex="-1" role="dialog" aria-labelledby="modalEditarIngrediente"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
 
 
-        <form role="form" method="post" action="">
+            <form role="form" method="post" action="">
 
 
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Editar Ingrediente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="card-body">
-         <div class="form-group">
-            <!-- Entrada para el nombre de Ingrediente -->
-            <div class="form-group">
-
-                <div class="input-group">
-
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                    </div>
-
-                    <input class="form-control" type="text" name="editarIngrediente" id="editarIngrediente"
-                        required>      
-                    <input type="hidden" name="idIngrediente" id="idIngrediente">
-                       
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Editar Ingrediente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <!-- Entrada para el nombre de Ingrediente -->
+                            <div class="form-group">
 
-            </div>
+                                <div class="input-group">
 
-            <!-- Entrada para el precio de ingrediente -->
-            <div class="form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-seedling"></i></span>
+                                    </div>
 
-                <div class="input-group">
+                                    <input class="form-control" type="text" name="editarIngrediente"
+                                        id="editarIngrediente" required>
+                                    <input type="hidden" name="idIngrediente" id="idIngrediente">
 
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                    </div>
+                                </div>
 
-                    <input class="form-control" type="text" id="editarPrecio" min="0" step="any" name="editarPrecio"
-                        required>
+                            </div>
 
-                </div>
+                            <!-- Entrada para el precio de ingrediente -->
+                            <div class="form-group">
 
-            </div>
+                                <div class="input-group">
 
-          
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-money-bill-wave"></i></span>
+                                    </div>
 
-            <!-- Entrada para la unidad de medida -->
-            <div class="form-group">
+                                    <input class="form-control" type="text" id="editarPrecio" min="0" step="any"
+                                        name="editarPrecio" required>
 
-                <div class="input-group">
+                                </div>
 
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-users"></i></span>
-                    </div>
+                            </div>
 
-                    <select class="form-control" name="editarUnidad">
-                        
-                        
-                        <?php
+
+
+                            <!-- Entrada para la unidad de medida -->
+                            <div class="form-group">
+
+                                <div class="input-group">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="fas fa-weight-hanging"></i></span>
+                                    </div>
+
+                                    <select class="form-control" name="editarUnidad">
+
+
+                                        <?php
 
                             $item = null;
                             $valor = null;
@@ -267,22 +285,32 @@ MODAL EDITAR INGREDIENTE
 
                             ?>
 
-                    
-                    </select>
 
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="calculadora">
+                            <span class="text-danger d-flex justify-content-center mt-2 mb-2">Calculadora de Costo</span>
+                            <span class="text-muted small d-flex justify-content-center mb-1">Des esta forma usted podrá calcular el costo por milésima</span>
+                                <input class="form-control" type="text" id="preciokiloedt" placeholder="0">
+                                <span class="text-info small d-flex justify-content-center">Ingrese precio por Kilo/Litro</span><br>
+                                <input class="form-control" type="text" id="preciogramoedt">
+                                <span class="text-info small d-flex justify-content-center">Este es el precio por Gramo/Centímetro Cúbico</span>
+                        </div>
+                    </div>
                 </div>
-
-            </div>
-
-
-
-         </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-info">Guardar</button>
+                </div>
 
                 <?php
 
@@ -290,10 +318,10 @@ MODAL EDITAR INGREDIENTE
                             $editarIngrediente -> ctrEditarIngrediente();
 
                 ?>
-      
-      </form>
+
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 
 

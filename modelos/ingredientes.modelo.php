@@ -5,6 +5,9 @@ require_once "conexion.php";
 class ModeloIngredientes{
 
 
+     /*============================================
+    MOSTRAR INGREDIENTES
+    ============================================*/
     static public function mdlMostrarIngredientes($tabla,$item,$valor)
     {
         if($item != null) {

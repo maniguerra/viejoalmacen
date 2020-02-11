@@ -22,7 +22,23 @@ class AjaxUnidades{
         echo json_encode($respuesta);
         
     }
-    
+
+    /*===============================================
+    MOSTRAR UNIDAD
+    ===============================================*/
+    public function ajaxMostrarUnidad(){
+
+        
+        if($this->id_unidad != ""){
+            $item = "id";
+            $valor = $this->idUnidad;;
+
+            $respuesta = ControladorUnidades::ctrMostrarUnidades($item, $valor);
+
+            echo json_encode($respuesta);
+            
+        }
+    }
     
 }
 
@@ -37,3 +53,12 @@ if(isset($_POST["idUnidad"])){
     $editar -> ajaxEditarUnidad();
 }
 
+/*=========================================
+MOSTRAR UNIDAD
+=========================================*/
+if(isset($_POST["id_unidad"])){
+    
+    $mostrar = new AjaxUnidades();
+    $mostrar -> idUnidad = $_POST["id_unidad"];
+    $mostrar -> ajaxEditarUnidad();
+}

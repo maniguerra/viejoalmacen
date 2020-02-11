@@ -30,7 +30,7 @@ class ControladorUsuarios{
                     
                     echo '<script>
                     
-                    window.location = "inicio";
+                    window.location = "remitos";
                     
                     </script>';
                     

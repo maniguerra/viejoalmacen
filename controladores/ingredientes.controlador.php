@@ -53,7 +53,12 @@ class ControladorIngredientes{
                         
                     }).then(function(result){
                         if(result.value){
-                            window.location = "ingredientes";
+                            var url = window.location
+                            var parts = url.toString().split("/");
+                            var lastSegment = parts.pop() || parts.pop();
+                            window.location = lastSegment;
+                            
+                            
                             
                         }   
                         
@@ -79,7 +84,10 @@ class ControladorIngredientes{
                     
                 }).then(function(result){
                     if(result.value){
-                        window.location = "ingredientes";
+                        var url = window.location
+                        var parts = url.toString().split("/");
+                        var lastSegment = parts.pop() || parts.pop();
+                        window.location = lastSegment;
                         
                     }   
                     
@@ -137,7 +145,10 @@ class ControladorIngredientes{
                         
                     }).then(function(result){
                         if(result.value){
-                            window.location = "ingredientes";
+                            var url = window.location
+                            var parts = url.toString().split("/");
+                            var lastSegment = parts.pop() || parts.pop();
+                            window.location = lastSegment;
                             
                         }   
                         
@@ -166,7 +177,10 @@ class ControladorIngredientes{
                     
                 }).then(function(result){
                     if(result.value){
-                        window.location = "ingredientes";
+                        var url = window.location
+                        var parts = url.toString().split("/");
+                        var lastSegment = parts.pop() || parts.pop();
+                        window.location = lastSegment;
                         
                     }   
                     
@@ -209,7 +223,8 @@ class ControladorIngredientes{
                     
                 }).then(function(result){
                     if(result.value){
-                        window.location = "ingredientes";
+                        window.location = "ingredientes"
+                   
                         
                     }   
                     

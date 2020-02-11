@@ -36,6 +36,8 @@
 
 
     <!-- PLUGINS DE JAVASCRIPT -->
+    <!-- Moment -->
+<script src="vistas/plugins/moment.js"></script>
     <script src="vistas/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -52,14 +54,29 @@
     <!-- Sweetalert2 -->
     <script src="vistas\plugins\sweetalert2\sweetalert2.all.js"></script>
     <script src="vistas\plugins\sweetalert2\sweetalert2.js"></script>
-   
-    
+
+    <!-- JQuery Number Format -->
+    <script src="vistas\plugins\jquery-number\jquery.number.js"></script>
+
+
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+      
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
 </head>
 
-<body class="hold-transition sidebar-collapse sidebar-mini login-page">
+<body class="hold-transition sidebar-collapse sidebar-dark sidebar-cyan sidebar-mini login-page">
+
+<!-- Time Picker -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- Site wrapper -->
+
 
 
   <?php
@@ -94,7 +111,8 @@
              $_GET["ruta"] == "salir" || 
              $_GET["ruta"] == "usuarios" ||
              $_GET["ruta"] == "ingredientes" ||
-             $_GET["ruta"] == "unidades"
+             $_GET["ruta"] == "editar-menu" ||
+             $_GET["ruta"] == "crear-menu"
              ){
 
                 include "modulos/".$_GET["ruta"].".php";
@@ -126,6 +144,9 @@
 <script src="vistas/js/usuario.js"></script>
 <script src="vistas/js/unidad.js"></script>
 <script src="vistas/js/ingrediente.js"></script>
+<script src="vistas/js/cliente.js"></script>
+<script src="vistas/js/vianda.js"></script>
+<script src="vistas/js/remitos.js"></script>
    
 
 </body>

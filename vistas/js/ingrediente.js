@@ -1,46 +1,48 @@
 /*====================================================================
 CARGAR LA TABLA DE INGREDIENTES DINAMICAMENTE
 ====================================================================*/
-/* 
+/*
 $.ajax({
 
     url: "ajax/datatable-ingredientes.ajax.php",
-    success:function(respuesta){
-        console.log("respuesta:", respuesta);
+    success: function(respuesta) {
+
     }
 
 
-}) */
+})
+*/
 
 
 
- $(".tablaIngredientes").DataTable({
+$(".tablaIngredientes").DataTable({
+    "pageLength": 5,
     "ajax": "ajax/datatable-ingredientes.ajax.php",
     "deferRender": true,
     "retrieve": true,
     "processing": true,
 
     "language": {
-        "sProcessing":     "Procesando...",
-        "sLengthMenu":     "Mostrar _MENU_ registros",
-        "sZeroRecords":    "No se encontraron resultados",
-        "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
-        "sInfo":           "Registros del _START_ al _END_ - Total: _TOTAL_",
-        "sInfoEmpty":      "Registros del  del 0 al 0 - Total: 0",
-        "sInfoFiltered":   "(filtrado de _MAX_ registros)",
-        "sInfoPostFix":    "",
-        "sSearch":         "Buscar:",
-        "sUrl":            "",
-        "sInfoThousands":  ",",
+        "sProcessing": "Procesando...",
+        "sLengthMenu": "Mostrar _MENU_ registros",
+        "sZeroRecords": "No se encontraron resultados",
+        "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+        "sInfo": "Registros del _START_ al _END_ - Total: _TOTAL_",
+        "sInfoEmpty": "Registros del  del 0 al 0 - Total: 0",
+        "sInfoFiltered": "(filtrado de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sSearch": "Buscar:",
+        "sUrl": "",
+        "sInfoThousands": ",",
         "sLoadingRecords": "Cargando...",
         "oPaginate": {
-            "sFirst":    "Primero",
-            "sLast":     "Último",
-            "sNext":     "Siguiente",
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
             "sPrevious": "Anterior"
         },
         "oAria": {
-            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
             "sSortDescending": ": Activar para ordenar la columna de manera descendente"
         },
         "buttons": {
@@ -48,10 +50,10 @@ $.ajax({
             "colvis": "Visibilidad"
         }
     }
-}) 
+})
 
 
-$("#nuevaUnidad").change(function(){
+$("#nuevaUnidad").change(function() {
 
 
     var idUnidad = $(this).val();
@@ -63,11 +65,13 @@ $("#nuevaUnidad").change(function(){
 ACTIVAR LOS BOTONES CON LOS ID CORRESPONDIENTES
 ==================================================*/
 
-$(".tablaIngredientes tbody").on('click', 'button', function(){
+$(".tablaIngredientes tbody").on('click', 'button', function() {
 
     var table = $('.tablaIngredientes').DataTable();
-    
-    var data = table.row( $(this).parents('tr') ).data(); 
+
+    var data = table.row($(this).parents('tr')).data();
+
+    console.log(data)
 
     $(this).attr("idIngrediente", data[6]);
 
@@ -77,11 +81,11 @@ $(".tablaIngredientes tbody").on('click', 'button', function(){
 /*=====================
 EDITAR INGREDIENTE
 =======================*/
-$(".tablaIngredientes tbody").on('click', 'button.btnEditarIngrediente', function(){
+$(".tablaIngredientes tbody").on('click', 'button.btnEditarIngrediente', function() {
 
 
     var idIngrediente = $(this).attr("idIngrediente");
-    
+
     var datos = new FormData();
 
     datos.append("idIngrediente", idIngrediente);
@@ -95,7 +99,7 @@ $(".tablaIngredientes tbody").on('click', 'button.btnEditarIngrediente', functio
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta){
+        success: function(respuesta) {
 
             var datosIngrediente = new FormData();
             datosIngrediente.append("idUnidad", respuesta["id_unidad"]);
@@ -109,16 +113,16 @@ $(".tablaIngredientes tbody").on('click', 'button.btnEditarIngrediente', functio
                 contentType: false,
                 processData: false,
                 dataType: "json",
-                success: function(respuesta){
-        
-                    
+                success: function(respuesta) {
+
+
                     $("#editarUnidad").val(respuesta["id"]);
-                    $("#editarUnidad").html(respuesta["nombre"]+' ('+respuesta["nomenclatura"]+')');
-                    
-        
+                    $("#editarUnidad").html(respuesta["nombre"] + ' (' + respuesta["nomenclatura"] + ')');
+
+
                 }
-        
-        
+
+
             })
 
             $("#editarIngrediente").val(respuesta["nombre"]);
@@ -138,7 +142,7 @@ $(".tablaIngredientes tbody").on('click', 'button.btnEditarIngrediente', functio
 /*=========================================
 ELIMINAR INGREDIENTE
 ========================================= */
-$(".tablaIngredientes tbody").on('click', 'button.btnEliminarIngrediente', function(){
+$(".tablaIngredientes tbody").on('click', 'button.btnEliminarIngrediente', function() {
 
 
     var idIngrediente = $(this).attr("idIngrediente");
@@ -152,12 +156,33 @@ $(".tablaIngredientes tbody").on('click', 'button.btnEliminarIngrediente', funct
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Si, borrar ingrediente'
-    }).then((result)=>{
-        if(result.value){
-            window.location = 'index.php?ruta=ingredientes&idIngrediente='+idIngrediente;
+    }).then(function(result) {
+            if (result.value) {
+                window.location = 'index.php?ruta=ingredientes&idIngrediente=' + idIngrediente;
+            }
         }
-    }
-    
+
     )
+
+})
+
+/*=========================================
+CALCULADORA
+========================================= */
+
+$(".calculadora").on("change", "#preciokilo", function() {
+    var precio1 = $("#preciokilo").val();
+    var precio2 = precio1 / 1000;
+    $("#preciogramo").val(precio2);
+
+
+
+})
+
+
+$(".calculadora").on("change", "#preciokiloedt", function() {
+    var precio1 = $("#preciokiloedt").val();
+    var precio2 = precio1 / 1000;
+    $("#preciogramoedt").val(precio2);
 
 })
