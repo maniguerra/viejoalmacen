@@ -50,8 +50,15 @@ TCPDF
 - Todos los gestores (CRUDS) ya estan desarrollados en su totalidad.
 - Esta en fase de desarrollo el módulo de impresion de remitos.
 
+
+#Update - 3er Commit
+- El módulo de impresion de remitos está terminado.
+- Se agrego la opcion de crear remitos personalizados, en el caso de que el detalle del mismo no pertenzca a un menu precargado
+- Se normalizo la base de datos creando una tabla ingredientes-menu. Gracias a esto se implementó la funcionalidad de mantener los precios siempre actualizados automaticamente al cambiar el precio de un ingrediente
+- Se agregaron las clases necesarias para que el sistema sea responsivo
+- Se solucionó el error que no permitia editar ingredientes desde dispositivos móviles
+
 #Lo que sigue
-- Hay que crear la funcionalidad para actualizar los precios de las viandas cuando se actualiza el precio de un ingrediente
-- Hay que agregar clases de boostrap a todos los elementos para hacer el sistema responsivo
-- Hay que verificar el formato del precio de la vianda cuando se crea.
-- Hay que arreglar un error cuando se Edita un ingrediente desde dispositivos móviles (error en ingredientes.js linea:75)
+- A la espera de que el cliente nos presente el remito, una vez hecho esto, resta:
+- Configurar el encabezado de cada remito dependiendo del cliente
+- Configurar los elementos que se cargan en el remito para que se impriman en los lugares correspondientes

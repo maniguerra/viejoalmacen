@@ -37,7 +37,7 @@
 
                             <!-- ENTRADA PARA EL NOMBRE DEL MENÚ-->
                             <div class="form-group row">
-                                <div class="col-12">
+                                <div class="col-xs-12 col-12">
                                     <div class="input-group">
 
                                         <span class="input-group-text"><i class="fas fa-hamburger"></i></span>
@@ -54,44 +54,45 @@
                             <!-- ENTRADA PARA SELECCIONAR EL CLIENTE-->
                          
                             <div class="form-group row">
-                                <div class="col-9">
+                                <div class="col-sm-12 col-lg-9">
                                     <div class="input-group">
 
-                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                        <select class="form-control selectCliente" style="max-width:70%;" name="seleccionarCliente" id="seleccionarCliente" required>
-                                            <option value="">Seleccione Cliente</option>
-                                            
-                                            <?php 
-                                            
-                                            $item = null;
-                                            $valor = null;
-                                            $clientes = ControladorClientes::ctrMostrarClientes($item,$valor);
+                                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                                <select class="form-control selectCliente" name="seleccionarCliente" id="seleccionarCliente" required>
+                                                    <option value="">Seleccione Cliente</option>
+                                                    
+                                                    <?php 
+                                                    
+                                                    $item = null;
+                                                    $valor = null;
+                                                    $clientes = ControladorClientes::ctrMostrarClientes($item,$valor);
 
-                                            foreach ($clientes as $key => $value){
-                                                echo '<option value="'.$value["id"].'">'.$value["establecimiento"].' - Municipalidad de '.$value["municipio"].' - Partido de '.$value["partido"].'</option>';
-                                            }
-                                            
-                                            ?>
+                                                    foreach ($clientes as $key => $value){
+                                                        echo '<option value="'.$value["id"].'">'.$value["establecimiento"].' - Municipalidad de '.$value["municipio"].' - Partido de '.$value["partido"].'</option>';
+                                                    }
+                                                    
+                                                    ?>
 
 
-                                        </select>
+                                                </select>
 
                                         
                                         
-                                        <span class="input-group-prepend">
-                                            <button class="btn btn-warning btn-xs ml-1 rounded" data-toggle="modal"
-                                                data-target="#modalAgregarCliente">
-                                                Crear Cliente
-                                            </button>
-                                            <button class="btn btn-danger btn-xs ml-1 rounded" data-toggle="modal"
-                                                data-target="#modalAgregarIngrediente">
-                                                Crear Ingrediente
-                                            </button>
-                                        </span>
-                                        </div>
-
+                                                <span class="input-group-prepend d-none d-sm-block">
+                                                    <button class="btn btn-warning btn-xs ml-1 rounded" data-toggle="modal"
+                                                        data-target="#modalAgregarCliente">
+                                                        Crear Cliente
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs ml-1 rounded" data-toggle="modal"
+                                                        data-target="#modalAgregarIngrediente">
+                                                        Crear Ingrediente
+                                                    </button>
+                                                </span>
                                     </div>
-                                    <div class="col-3 form-group">
+
+                                </div>
+
+                                    <div class="col-xs-12 form-group">
                                     <div class="icheck-success ">
                                     <input  type="checkbox" id="nuevoDmc" name="nuevoDmc">
                                     
@@ -440,29 +441,11 @@ MODAL AGREGAR INGREDIENTE
                                                 class="fas fa-weight-hanging"></i></span>
                                     </div>
 
-                                    <select class="form-control" name="nuevaUnidad" required>
-                                        <option value="">Seleccionar Unidad de Medida</option>
-
-                                        <?php
-
-                            $item = null;
-                            $valor = null;
-
-                            $unidades = ControladorUnidades::ctrMostrarUnidades($item, $valor);
-
-
-                            foreach ($unidades as $key => $value){
-                                
-                                echo '
-                                <option value='.$value["id"].'>'.$value["nombre"].' ('.$value["nomenclatura"].')</option>
-                                ';}
-
-                                
-
-                        ?>
-
-
-                                    </select>
+                                    <select class="form-control" name="nuevaUnidad" id="">
+                                        <option value="1">Kilo</option>
+                                        <option value="2">Litro</option>
+                                        <option value="3">Unidad</option>
+                                    </option></select>
 
                                 </div>
 
@@ -473,16 +456,7 @@ MODAL AGREGAR INGREDIENTE
 
 
                         </div>
-                        <br>
-                        <hr>
-                        <div class="calculadora">
-                            <span class="text-danger d-flex justify-content-center mt-2 mb-2">Calculadora de Costo</span>
-                            <span class="text-muted small d-flex justify-content-center mb-1">Des esta forma usted podrá calcular el costo por milésima</span>
-                                <input class="form-control" type="text" id="preciokilo" placeholder="0">
-                                <span class="text-info small d-flex justify-content-center">Ingrese precio por Kilo/Litro</span><br>
-                                <input class="form-control" type="text" id="preciogramo">
-                                <span class="text-info small d-flex justify-content-center">Este es el precio por Gramo/Centímetro Cúbico</span>
-                        </div>
+                                            
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -535,10 +509,7 @@ MODAL AGREGAR INGREDIENTE
 
                                         listaIngredientes.push({
                                             "id" : id,
-                                            "ingrediente": ingrediente,
-                                            "cantidad": cantidad,
-                                            "unidad": unidad,
-                                            "precio": precio
+                                            "cantidad": cantidad
                                             
                                         })
                                     })
@@ -548,8 +519,8 @@ MODAL AGREGAR INGREDIENTE
 
                                     $("#ingredientesFinal").val(JSON.stringify(listaIngredientes));
                                     
-
-                                 $('.formularioMenu').submit();
+                                    console.log(listaIngredientes)
+                                $('.formularioMenu').submit();
                         }); // Fin del método
                         </script>
                     <?php

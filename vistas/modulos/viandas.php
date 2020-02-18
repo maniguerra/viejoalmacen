@@ -55,6 +55,7 @@
                         $respuesta = ControladorViandas::ctrMostrarViandas($item,$valor);
 
                         foreach($respuesta as $key => $value){
+                            $consulta = ModeloViandas::mdlCalcularCosto($value["id"]);
                             echo '  <tr>
                             <td>'.($key + 1).'</td>
                             <td>'.$value["nombre"].'</td>';
@@ -63,7 +64,7 @@
                             $respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente,$valorCliente);
 
                             echo '<td>'.$respuestaCliente["establecimiento"].' - '.$respuestaCliente["partido"].'</td>
-                            <td>$ '.number_format($value["costo"],2).'</td>
+                            <td>$ '.number_format($consulta ,2).'</td>
                             <td>';
 
                             if($value["dmc"] == "si"){
@@ -75,6 +76,8 @@
                                 <a href="index.php?ruta=editar-menu&idMenu='.$value["id"].'"><button class="btn btn-warning"><i class="fa fa-pencil-alt"></i></button></a>
                                 <button class="btn btn-danger btnEliminarVianda" idMenu="'.$value["id"].'"><i class="fa fa-times"></i></button>
                             </td>';
+
+                            ;
                         }
                     ?>
 

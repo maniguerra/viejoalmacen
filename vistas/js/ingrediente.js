@@ -1,3 +1,5 @@
+jQuery(document).ready(function($) { $('.main-sidebar').height($(document).outerHeight()); });
+
 /*====================================================================
 CARGAR LA TABLA DE INGREDIENTES DINAMICAMENTE
 ====================================================================*/
@@ -16,7 +18,7 @@ $.ajax({
 
 
 $(".tablaIngredientes").DataTable({
-    "pageLength": 5,
+    "pageLength": 8,
     "ajax": "ajax/datatable-ingredientes.ajax.php",
     "deferRender": true,
     "retrieve": true,
@@ -71,9 +73,6 @@ $(".tablaIngredientes tbody").on('click', 'button', function() {
 
     var data = table.row($(this).parents('tr')).data();
 
-    console.log(data)
-
-    $(this).attr("idIngrediente", data[6]);
 
 });
 
@@ -115,9 +114,16 @@ $(".tablaIngredientes tbody").on('click', 'button.btnEditarIngrediente', functio
                 dataType: "json",
                 success: function(respuesta) {
 
+                    let id = respuesta["id"];
+                    $("#editarUnidad").val(id);
+                    if (id == 1) {
+                        $("#editarUnidad").html('Kilo');
+                    } else if (id == 2) {
+                        $("#editarUnidad").html('Litro');
+                    } else {
+                        $("#editarUnidad").html('Unidad');
+                    }
 
-                    $("#editarUnidad").val(respuesta["id"]);
-                    $("#editarUnidad").html(respuesta["nombre"] + ' (' + respuesta["nomenclatura"] + ')');
 
 
                 }
@@ -125,9 +131,15 @@ $(".tablaIngredientes tbody").on('click', 'button.btnEditarIngrediente', functio
 
             })
 
+            if (respuesta["id_unidad"] == 1 || respuesta["id_unidad"] == 2) {
+                var precio = respuesta["precio"] * 1000;
+            } else {
+                var precio = respuesta["precio"];
+            }
+
             $("#editarIngrediente").val(respuesta["nombre"]);
             $("#idIngrediente").val(respuesta["id"]);
-            $("#editarPrecio").val(respuesta["precio"]);
+            $("#editarPrecio").val(precio);
 
         }
 
@@ -163,26 +175,5 @@ $(".tablaIngredientes tbody").on('click', 'button.btnEliminarIngrediente', funct
         }
 
     )
-
-})
-
-/*=========================================
-CALCULADORA
-========================================= */
-
-$(".calculadora").on("change", "#preciokilo", function() {
-    var precio1 = $("#preciokilo").val();
-    var precio2 = precio1 / 1000;
-    $("#preciogramo").val(precio2);
-
-
-
-})
-
-
-$(".calculadora").on("change", "#preciokiloedt", function() {
-    var precio1 = $("#preciokiloedt").val();
-    var precio2 = precio1 / 1000;
-    $("#preciogramoedt").val(precio2);
 
 })

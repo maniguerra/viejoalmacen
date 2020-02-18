@@ -1,28 +1,25 @@
 <?php
-//============================================================+
-// File name   : example_051.php
-// Begin       : 2009-04-16
-// Last Update : 2013-05-14
-//
-// Description : Example 051 for TCPDF class
-//               Full page background
-//
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//============================================================+
+//CAPTURO LOS ELEMENTOS DEL REMITO QUE VIENEN POR VARIABLES GET
 
-/**
- * Creates an example PDF TEST document using TCPDF
- * @package com.tecnick.tcpdf
- * @abstract TCPDF - Example: Full page background
- * @author Nicola Asuni
- * @since 2009-04-16
- */
+
+//FECHA
+$dia = $_GET["dia"];
+$mes = $_GET["mes"];
+$ano = $_GET["ano"];
+//ENCABEZADO
+
+$partido = $_GET["partido"];
+$municipio = $_GET["municipio"];
+$organo = $_GET["organo"];
+$establecimiento = $_GET["establecimiento"];
+$cuit = $_GET["cuit"];
+$tipo = $_GET["tipo"];
+$cuposComedor = $_GET["cuposComedor"];
+$cuposDmc= $_GET["cuposDmc"];
+
+// CUERPO DEL REMITO
+$cuerpoRemito= $_GET["cuerpoRemito"];
+
 
 // Include the main TCPDF library (search for installation path).
 require_once('tcpdf_include.php');
@@ -39,8 +36,8 @@ class MYPDF extends TCPDF {
 		// disable auto-page-break
 		$this->SetAutoPageBreak(false, 0);
 		// set bacground image
-		$img_file = K_PATH_IMAGES.'image_demo.jpg';
-		$this->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+	//	$img_file = K_PATH_IMAGES.'image_demo.jpg';
+	//	$this->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 		// restore auto-page-break status
 		$this->SetAutoPageBreak($auto_page_break, $bMargin);
 		// set the starting point for the page content
@@ -53,9 +50,9 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Nicola Asuni');
-$pdf->SetTitle('TCPDF Example 051');
-$pdf->SetSubject('TCPDF Tutorial');
+$pdf->SetAuthor('Agustin Guerra');
+$pdf->SetTitle('Remito - Viejo Almacén');
+$pdf->SetSubject('Viejo Almacén');
 $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
 // set header and footer fonts
@@ -98,31 +95,79 @@ $fecha = '
 
 <table>
 <tr>
-<td style="width:400px"> </td>
-		
+	<td style="width:200px">'.$dia.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$mes.'&nbsp;&nbsp;&nbsp;&nbsp;'.$ano.'</td>
 </tr>
-		<tr><td style="width:400px"> </td>
-		</tr>
-		<tr><td style="width:400px"> </td>
-		</tr>
-	<tr>
-	
-		<td style="width:430px"> </td>
-		<td style="width:200px"> 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;02&nbsp;&nbsp;&nbsp;&nbsp;2020</td>
-
-		
 
 
-	</tr>
 
 </table>
 
 
 
 ';
+
+
 $pdf->writeHTML($fecha, false, false, false, false, '');
 
 
+$encabezado = '
+<table>
+
+
+<tr><td></td></tr>
+	<tr><td></td></tr>
+	<tr>
+		<td style="width:440px">Partido: '.$partido.'</td>
+		
+	</tr>
+	<tr>
+		<td style="width:440px">'.$municipio.'</td>
+	</tr>
+
+	<tr><td style="width:430px">'.$organo.'</td><td style="width:430px">'.$establecimiento.'</td></tr>
+	
+	<tr><td style="width:430px">'.$cuit.'</td><td style="width:430px">'.$tipo.'</td></tr>
+	<hr>
+	<tr><td style="width:430px">Cupos Comedor: '.$cuposComedor.'</td><td style="width:430px">Cupos DMC: '.$cuposDmc.'</td></tr>
+	
+
+
+
+</table><hr>
+';
+$pdf->writeHTML($encabezado, false, false, false, false, '');
+
+$cuerpoRemito2 = explode(",", $cuerpoRemito);
+
+$cuerpoFinal=array_chunk($cuerpoRemito2,3);
+
+if(sizeof($cuerpoFinal) > 16){
+
+$paginas = (floor(sizeof($cuerpoFinal) / 16))+1;
+
+echo $paginas;
+
+}else{
+
+	$cuerpo = '';
+	foreach($cuerpoFinal as $value){
+		$cuerpo = $cuerpo.'<table>
+		<tr>
+		<td style="width:430px">'.$value[0].'</td>
+		<td style="width:100px">'.$value[1].'</td>
+		<td style="width:100px">'.$value[2].'</td>
+		</tr></table>';	
+	
+	
+	}
+			
+		$pdf->writeHTML($cuerpo, false, false, false, false, '');
+	
+	
+}
+
+
+	
 
 // ---------------------------------------------------------
 

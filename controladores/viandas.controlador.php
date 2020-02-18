@@ -57,7 +57,7 @@ class ControladorViandas{
             if($hasZero == FALSE){
                 
                 // Y se cargo al menos un ingrediente (58 es la cantidad de caracteres que tiene el string si no le pongo ningun dato)
-                if( strlen($arrayIngredientes) > 58) {
+                if( isset($_POST["ingredientesFinal"])) {
                     
                     // Y se seleccionó un cliente
                     if($_POST["seleccionarCliente"] != 0){

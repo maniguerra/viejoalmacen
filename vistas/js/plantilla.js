@@ -1,5 +1,3 @@
-jQuery(document).ready(function($) { $('.card-body').height("70vh") });
-
 jQuery(document).ready(function($) { $('.main-sidebar').height($(document).outerHeight()); });
 
 
@@ -8,7 +6,7 @@ Data Table
 ==================================================*/
 $(".tablas").DataTable({
 
-    "pageLength": 5,
+    "pageLength": 10,
     "language": {
         "sProcessing": "Procesando...",
         "sLengthMenu": "Mostrar _MENU_ registros",

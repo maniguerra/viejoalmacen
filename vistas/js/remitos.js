@@ -6,6 +6,105 @@ if (!Array.prototype.forEach) {
     }
 }
 
+
+// Manejo de botones y cajas al seleccionar un remito personalizado
+$("#check-personalizado").click(function() {
+
+    var check = $(this).attr("checked");
+
+    if (!check) {
+        var check = $(this).attr("checked", true);
+
+
+        $("#select-comedor").attr("disabled", true);
+        $("#cupos-comedor").attr("readonly", true);
+        $("#check-comedor").prop("checked", false);
+
+
+        $("#select-dmc").attr("disabled", true);
+        $("#cupos-dmc").attr("readonly", true);
+        $("#check-dmc").prop("checked", false);
+
+
+
+        $(".div-comedor").hide();
+        $(".div-dmc").hide();
+
+        $(".agregarIngredientePersonalizado").removeClass("d-none");
+
+
+    } else {
+        var check = $(this).attr("checked", false);
+
+
+
+        $(".div-comedor").show();
+        $(".div-dmc").show();
+
+        $(".agregarIngredientePersonalizado").addClass("d-none");
+        $(".listaIngredientes").remove()
+
+
+
+
+    }
+})
+
+/*============================================
+Agregar elementos de remito personalizado
+==============================================*/
+
+$(".agregarIngredientePersonalizado").on("click", function() {
+    $(".ingredientesPersonalizados").append(
+
+        '<div class="row listaIngredientes mb-2">' +
+        '<div class="col-sm-12 col-md-8 nombreIngrediente">' +
+        ' <div class="input-group">' +
+
+        '<span class="input-group-text"><button type="button" class="btn btn-danger btn-xs quitarIngredientePersonalizado" ><i class="fa fa-times"></i></button></span>' +
+        '<input type="text" class="form-control ingredientePersonalizado" required>' +
+
+
+        '</div>' +
+        ' <span class="small text-muted">&nbsp; Ingrese nombre producto</span>' +
+        '</div>' +
+
+        '<div class="col-sm-6 col-md-2 ingresoCantidad">' +
+        '<input type="number" class="form-control cantidadPersonalizado" name="cantidadPersonalizado" min="1" placeholder="0" required>' +
+
+        ' <span class="small text-muted">&nbsp; Ingrese cantidad</span>' +
+        '</div>' +
+
+        '<div class="col-sm-6 col-md-2 unidadPersonalizado">' +
+        '<select class="form-control unidad-de-medida-personalizada" required>' +
+        '<option value="Kgs.">Kilos</option>' +
+        '<option value="Lts.">Litros</option>' +
+        '<option value="U.">Unidad</option>' +
+        '</select>' +
+        ' <span class="small text-muted">&nbsp; Unidad de medida</span>' +
+        '</div>' +
+
+
+
+
+        '</div>'
+
+
+
+    );
+});
+
+
+
+
+
+
+$(document).on("click", ".quitarIngredientePersonalizado", function() {
+    $(this).parent().parent().parent().parent().remove();
+});
+
+
+
 /*============================================
 COLOCO BUSCADOR EN CADA SELECT Y CARGO EL CAMPO
 FECHA CON EL DIA ACTUAL.
@@ -149,6 +248,7 @@ CARGAR DATOS DE REMITO
 var clienteRemito = [];
 var productosRemitoComedor = [];
 var productosRemitoDmc = [];
+var productosRemitoPersonalizado = [];
 
 $(".btnCrearRemito").click(function() {
 
@@ -166,12 +266,14 @@ $(".btnCrearRemito").click(function() {
     clienteRemito = [];
     productosRemitoComedor = [];
     productosRemitoDmc = [];
+    productosRemitoPersonalizado = [];
 
     var idCliente = $("#select-cliente").val();
     var idDmc = $("#select-dmc").val();
     var idComedor = $("#select-comedor").val();
     var checkComedor = $("#check-comedor").attr("checked");
     var checkDmc = $("#check-dmc").attr("checked");
+    var checkPersonalizado = $("#check-personalizado").attr("checked");
     var cuposComedor = $("#cupos-comedor").val();
     var cuposDmc = $("#cupos-dmc").val();
 
@@ -203,7 +305,7 @@ $(".btnCrearRemito").click(function() {
         })
 
 
-        if (checkComedor) {
+        if (checkComedor && !checkPersonalizado) {
             // Se cargará un menú COMEDOR
 
             if (idComedor != "") {
@@ -225,19 +327,23 @@ $(".btnCrearRemito").click(function() {
                     processData: false,
                     dataType: "json",
                     success: function(respuesta) {
-                        // console.log(respuesta)
 
-                        productosRemitoComedor.push(respuesta["productos"])
+
+                        productosRemitoComedor.push(respuesta);
 
                     }
                 })
 
             } else {
-                alert("Debe seleccionar un menu comedor")
+                swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar un menú tipo comedor'
+                })
             }
         }
 
-        if (checkDmc) {
+        if (checkDmc && !checkPersonalizado) {
             // Se cargará un menú DMC
             if (idDmc != "") {
                 // Hago la llamada Ajax para traer los datos del menu dmc
@@ -257,22 +363,44 @@ $(".btnCrearRemito").click(function() {
                     processData: false,
                     dataType: "json",
                     success: function(respuesta) {
-                        console.log(respuesta["dmc"])
-                        console.log(respuesta["productos"])
-
-                        productosRemitoDmc.push(respuesta["productos"])
+                        productosRemitoDmc.push(respuesta)
                     }
                 })
             } else {
-                alert("Debe seleccionar un menu DMC")
+                swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar un menú tipo DMC'
+                })
             }
 
 
         }
 
+        if (checkPersonalizado) {
+
+            $(".listaIngredientes").each(function() {
+
+                let ingrediente = $(this).children(".nombreIngrediente").children().children(".ingredientePersonalizado").val();
+                let cantidad = $(this).children(".ingresoCantidad").children(".cantidadPersonalizado").val();
+                let unidad = $(this).children(".unidadPersonalizado").children(".unidad-de-medida-personalizada").val();
+
+
+                var elemento = [];
+                elemento.push(ingrediente, cantidad, unidad);
+
+                productosRemitoPersonalizado.push(elemento)
+
+            });
+        }
+
 
     } else {
-        alert("Debe seleccionar un cliente")
+        swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Debes seleccionar un cliente'
+        })
     }
 
 
@@ -320,7 +448,7 @@ $(".btnCrearRemito").click(function() {
         $("#ano").val(ano);
     }
 
-    function cargarDetalle(productosRemitoComedor, productosRemitoDmc) {
+    function cargarDetalle(productosRemitoComedor, productosRemitoDmc, productosRemitoPersonalizado) {
 
         if (productosRemitoComedor != "") {
             $("#remito").append(
@@ -334,7 +462,7 @@ $(".btnCrearRemito").click(function() {
             for (let i = 0; i < productosRemitoComedor.length; i++) {
 
 
-                var ingredientesC = JSON.parse(productosRemitoComedor[i])
+                var ingredientesC = (productosRemitoComedor[i])
 
 
                 for (let i in ingredientesC) {
@@ -361,14 +489,14 @@ $(".btnCrearRemito").click(function() {
 
 
                     $("#remito").append(
-                        "<div class='row'>" +
-                        "<div class='col-10'" +
-                        "<p class='d-inline'>" + ingredientesC[i]["ingrediente"] + "</b>" +
+                        "<div class='row imprimirIngredientes'>" +
+                        "<div class='col-8 imprimirNombre'" +
+                        "<p class='d-inline'>" + ingredientesC[i]["nombre"] + "</b>" +
                         "</div>" +
-                        "<div class='col-1'" +
+                        "<div class='col-2 imprimirCantidad'" +
                         "<p class='d-inline ml-5'>" + cantidadTotal + "</b>" +
                         "</div>" +
-                        "<div class='col-1'" +
+                        "<div class='col-2 imprimirUnidad'" +
                         "<p class='d-inline ml-5'>" + unidadFinal + "</b>" +
                         "</div>" +
 
@@ -386,14 +514,14 @@ $(".btnCrearRemito").click(function() {
         if (productosRemitoDmc != "") {
             $("#remito").append(
                 "<div class='row'>" +
-                "<div class='col-6'" +
+                "<div class='col-sm-12 col-md-6'" +
                 "<p class='d-inline'><b>Detalle DMC:</b><p>" +
                 "</div>" +
                 "</div>"
             )
             for (let i = 0; i < productosRemitoDmc.length; i++) {
 
-                var ingredientesD = JSON.parse(productosRemitoDmc[i])
+                var ingredientesD = (productosRemitoDmc[i])
 
                 for (let i in ingredientesD) {
 
@@ -421,14 +549,14 @@ $(".btnCrearRemito").click(function() {
 
 
                     $("#remito").append(
-                        "<div class='row'>" +
-                        "<div class='col-10'" +
-                        "<p class='d-inline'>" + ingredientesD[i]["ingrediente"] + "</b>" +
+                        "<div class='row imprimirIngredientes'>" +
+                        "<div class='col-8 imprimirNombre'" +
+                        "<p class='d-inline'>" + ingredientesD[i]["nombre"] + "</b>" +
                         "</div>" +
-                        "<div class='col-1'" +
+                        "<div class='col-2 imprimirCantidad'" +
                         "<p class='d-inline ml-5'>" + cantidadTotal + "</b>" +
                         "</div>" +
-                        "<div class='col-1'" +
+                        "<div class='col-2 imprimirUnidad'" +
                         "<p class='d-inline ml-5'>" + unidadFinal + "</b>" +
                         "</div>" +
 
@@ -442,11 +570,37 @@ $(".btnCrearRemito").click(function() {
         }
 
 
+        if (productosRemitoPersonalizado != "") {
+
+            for (let i = 0; i < productosRemitoPersonalizado.length; i++) {
+                $("#remito").append(
+                    "<div class='row imprimirIngredientes'>" +
+                    "<div class='col-8 imprimirNombre'" +
+                    "<p class='d-inline'>" + productosRemitoPersonalizado[i][0] + "</b>" +
+                    "</div>" +
+                    "<div class='col-2 imprimirCantidad'" +
+                    "<p class='d-inline ml-5 '>" + productosRemitoPersonalizado[i][1] + "</b>" +
+                    "</div>" +
+                    "<div class='col-2 imprimirUnidad'" +
+                    "<p class='d-inline ml-5'>" + productosRemitoPersonalizado[i][2] + "</b>" +
+                    "</div>" +
+
+
+                    "</div>"
+                )
+            }
+
+
+        }
+
 
     }
 
-    setTimeout(function(e) { cargarDetalle(productosRemitoComedor, productosRemitoDmc) }, 500);
-    setTimeout(function(e) { cargarEncabezado(clienteRemito) }, 300);
+    setTimeout(function(e) {
+        cargarDetalle(productosRemitoComedor, productosRemitoDmc, productosRemitoPersonalizado);
+
+    }, 100);
+    setTimeout(function(e) { cargarEncabezado(clienteRemito) }, 50);
 })
 
 
@@ -454,27 +608,53 @@ $(".btnCrearRemito").click(function() {
 /*============================================
 IMPRIMIR REMITO
 ==============================================*/
-$(".btnImprimirRemito").click(function() {
+$(document).ready(function() {
+    $(".btnImprimirRemito").click(function() {
 
 
 
 
-    //CAPTURAR TODOS LOS ELEMENTOS DEL REMITO
+        //CAPTURAR TODOS LOS ELEMENTOS DEL REMITO
 
-    // FECHA
-    var dia = $("#dia").val();
-    var mes = $("#mes").val();
-    var ano = $("#ano").val();
-    console.log(dia, mes, ano)
+        cuerpoRemito = [];
+        $(".imprimirIngredientes").each(function() {
 
-    // ENCABEZADO
-
+            let ingrediente = $(this).children(".imprimirNombre").html();
+            let cantidad = $(this).children(".imprimirCantidad").html();
+            let unidad = $(this).children(".imprimirUnidad").html()
 
 
-    //CUERPO
+            var imprimirElemento = [];
+            imprimirElemento.push(ingrediente, cantidad, unidad);
 
-    window.open("extensiones/tcpdf/remito/remito.php", "_blank")
+            cuerpoRemito.push(imprimirElemento)
+
+        });
+
+
+        // FECHA
+        var dia = $("#dia").val();
+        var mes = $("#mes").val();
+        var ano = $("#ano").val();
+        console.log(dia, mes, ano)
+
+        // ENCABEZADO
+
+        var partido = $("#partido").html().substr(16);
+        var municipio = $("#municipio").html().substr(18);
+        var organo = $("#organo").html().substr(15);
+        var establecimiento = $("#establecimiento").html().substr(24);
+        var cuit = $("#cuit").html().substr(13);
+        var tipo = $("#tipo").html().substr(13);
+        var cuposComedor = $("#cuposComedor").html().substr(22);
+        var cuposDmc = $("#cuposDmc").html().substr(18);
 
 
 
+
+        window.open("extensiones/tcpdf/remito/remito.php?dia=" + dia + "&mes=" + mes + "&ano=" + ano + "&partido=" + partido + "&municipio=" + municipio + "&organo=" + organo + "&establecimiento=" + establecimiento + "&cuit=" + cuit + "&tipo=" + tipo + "&cuposComedor=" + cuposComedor + "&cuposDmc=" + cuposDmc + "&cuerpoRemito=" + cuerpoRemito, "_blank")
+
+
+
+    })
 })

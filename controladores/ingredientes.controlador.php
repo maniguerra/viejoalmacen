@@ -30,11 +30,18 @@ class ControladorIngredientes{
             if( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ ]+$/', $_POST["nuevoIngrediente"]) && preg_match('/^[0-9.]+$/', $_POST["nuevoPrecio"])){
 
                 $tabla = "ingredientes";
+
+                
+                if($_POST["nuevaUnidad"] == 1 || $_POST["nuevaUnidad"] == 2){
+                    $precio = $_POST["nuevoPrecio"] / 1000;
+                }else{
+                    $precio = $_POST["nuevoPrecio"];
+                }
                 
                 $datos = array(
                     "nombre" => $_POST["nuevoIngrediente"],
                     "id_unidad" => $_POST["nuevaUnidad"],
-                    "precio" => $_POST["nuevoPrecio"]
+                    "precio" => $precio
                     
                 );
                 
@@ -120,15 +127,30 @@ class ControladorIngredientes{
             if( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ ]+$/', $_POST["editarIngrediente"]) && preg_match('/^[0-9.]+$/', $_POST["editarPrecio"])){
                 
                 $tabla = "ingredientes";
+
+                if($_POST["editarUnidad"] == 1 || $_POST["editarUnidad"] == 2){
+                    $precio = $_POST["editarPrecio"] / 1000;
+                }else{
+                    $precio = $_POST["editarPrecio"];
+                }
               
                 
                 $datos = array(
                     "nombre" => $_POST["editarIngrediente"],
                     "id_unidad" => $_POST["editarUnidad"],
-                    "precio" => $_POST["editarPrecio"],
+                    "precio" => $precio,
                     "id" => $_POST["idIngrediente"]
                 );
-                
+
+                // BLOQUE DE CODIGO PARA EDITAR EL PRECIO DE LOS MENUES QUE TIENEN ESTE INGREDIENTE
+                         /*   $datos2 = array("precio" => $precio,
+                                            "id" => $_POST["idIngrediente"]);
+                            $respuesta2 = ModeloIngredientes::mdlModificarPrecioViandas($datos2);
+
+                            foreach($respuesta2 as $key => $value){
+                                echo '<script>console.log('.$value.');</script>';
+                            }
+                */
                
                 $respuesta = ModeloIngredientes::mdlEditarIngrediente($tabla,$datos);
                 

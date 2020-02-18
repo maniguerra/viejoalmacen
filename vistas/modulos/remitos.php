@@ -27,7 +27,7 @@
             <div class="card-body">
 				<form action="">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-sm-12 col-md-6">
 
 
 							<!-- Select de Cliente -->
@@ -65,9 +65,9 @@
                
 
 							<!-- Datos Comedor -->				
-							<div class="row">
+							<div class="row div-comedor">
 									<!-- Checkbox comedor -->
-									<div class="col-3 form-group">
+									<div class="col-sm-12 col-md-3 form-group">
 											<div class="icheck-success">
 												<input  type="checkbox" id="check-comedor" name="check-comedor">
 												<label  class="text-dark" for="check-comedor">&nbsp;Comedor</label>
@@ -75,7 +75,7 @@
 									</div>
 									
 									<!-- Select Menu Comedor-->
-									<div class="col-6">
+									<div class="col-sm-12 col-md-6">
 										<div class="input-group">
 
 											<div class="input-group-prepend">
@@ -89,16 +89,16 @@
 									</div>
 
 									<!-- Input cupos Comedor-->
-									<div class="col-3">
+									<div class="col-sm-12 col-md-3">
 											<input class="form-control" type="number" placeholder="0" id="cupos-comedor" readonly>
 											<span class="small text-muted">Cupos Comedor</span>
 									</div>
 							</div>
 				
 							<!-- Datos DMC -->
-							<div class="row mt-4">
+							<div class="row div-dmc mt-4">
 										<!-- Checkbox DMC-->
-									<div class="col-3 form-group">
+									<div class="col-sm-12 col-md-3 form-group">
 											<div class="icheck-danger">
 												<input  type="checkbox" id="check-dmc" name="check-dmc">
 												<label  class="text-dark" for="check-dmc">&nbsp;DMC</label>
@@ -106,7 +106,7 @@
 									</div>
 
 									<!-- Select Menu DMC-->
-									<div class="col-6">
+									<div class="col-sm-12 col-md-6">
 										<div class="input-group">
 
 												<div class="input-group-prepend">
@@ -119,15 +119,44 @@
 									</div>
 
 									<!-- Input cupos DMC-->
-									<div class="col-3">
+									<div class="col-sm-12 col-md-3">
 											<input class="form-control" type="number" placeholder="0" id="cupos-dmc" readonly>
 											<span class="small text-muted">Cupos DMC</span>
 									</div>
 							</div>
 
-							<!-- Selecionar Fecha -->
+							<!-- CREAR REMITO PERSONALIZADO -->
+							<hr>
+							<div class="row mt-4">
+									<div class="col-6 form-group">
+											<div class="icheck-warning">
+												<input  type="checkbox" id="check-personalizado" name="check-personalizado">
+												<label  class="text-dark" for="check-personalizado">&nbsp;Crear Remito Personalizado</label>
+												</div><span class="small text-muted">Agregar al remito elementos que no pertenezcan a un menú</span>
+											
+									</div>
+
+								<div class="col-3">
+									<button class="btn btn-warning btn-lg agregarIngredientePersonalizado d-none">Agregar Ingrediente</button>
+								</div>
+							
+							</div>
 							<div class="row">
-								<div class="col-4 mt-4">
+								<div class="col-12">
+											
+									<!-- ENTRADA PARA AGREGAR INGREDIENTES-->
+									<div class="form-group ingredientesPersonalizados">
+										
+
+									</div>
+									<input type="hidden" id="ingredientesPersonalizadosFinal" name="ingredientesPersonalizadosFinal">
+								</div>
+							</div>
+
+							<!-- Selecionar Fecha -->
+							<hr>
+							<div class="row">
+								<div class="col-sm-12 col-md-4 mt-4">
 
 									
 									<div class="input-group">
@@ -149,31 +178,31 @@
 						</form>		
 
 						<!-- ACA VAN LOS DATOS DEL REMITO -->
-						<div class="col-6 contenidoRemito">
+						<div class="col-sm-12 col-md-6 contenidoRemito">
 
 								<div id="encabezado">
 									<div class="row">
-										<div class="col-4">
+										<div class="col-sm-12 col-md-4">
 											<div id="partido"></div>
 										</div>
 
-										<div class="col-4">
+										<div class="col-sm-12 col-md-4">
 											<div id="municipio"></div>
 										</div>
 
-										<div class="col-4">
+										<div class="col-sm-12 col-md-4">
 											<div id="organo"></div>
 										</div>
 									</div>
 
 									<div class="row">
-										<div class="col-4">
+										<div class="col-sm-12 col-md-4">
 											<div id="establecimiento"></div>
 										</div>
-										<div class="col-4">
+										<div class="col-sm-12 col-md-4">
 											<div id="cuit"></div>
 										</div>
-										<div class="col-4">
+										<div class="col-sm-12 col-md-4">
 											<div id="tipo"></div>
 										</div>
 									</div>

@@ -47,7 +47,7 @@
     <a href="remitos" class="brand-link bg-dark">
 
 
-        <img src="vistas/img/logos/logo_solo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="vistas/img/logos/logo_solo.png" alt="Viejo Almacén Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
         <span class="brand-text font-weight-light">Viejo Almacén</span>
     </a>

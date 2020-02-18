@@ -53,7 +53,7 @@ $("#nuevoUsuario").change(function() {
         dataType: "json",
         success: function(respuesta) {
             if (respuesta) {
-                $("#nuevoUsuario").parent().after('<div class="d-block alert alert-warning">Este usuario ya existe en la base de datos</div>');
+                $("#nuevoUsuario").parent().after('<div class="d-block alert alert-danger">Este usuario ya existe en la base de datos</div>');
 
                 $("#nuevoUsuario").val("");
             }

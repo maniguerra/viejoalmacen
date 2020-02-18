@@ -51,7 +51,7 @@
 
                             <!-- ENTRADA PARA EL NOMBRE DEL MENÚ-->
                             <div class="form-group row">
-                                <div class="col-12">
+                                <div class="col-xs-12 col-12">
                                     <div class="input-group">
 
                                         <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -68,7 +68,7 @@
                             <!-- ENTRADA PARA SELECCIONAR EL CLIENTE-->
                          
                             <div class="form-group row">
-                                <div class="col-9">
+                                <div class="col-sm-12 col-lg-9">
                                     <div class="input-group">
 
                                         <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -92,7 +92,7 @@
 
                                         
                                         
-                                        <span class="input-group-prepend">
+                                        <span class="input-group-prepend  d-none d-sm-block">
                                             <button class="btn btn-warning btn-xs ml-1 rounded" data-toggle="modal"
                                                 data-target="#modalAgregarCliente">
                                                 Crear Cliente
@@ -105,7 +105,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-3 form-group">
+                                    <div class="col-xs-12 form-group">
                                     <div class="icheck-success ">
                                     <input  type="checkbox" id="nuevoDmc" name="nuevoDmc"
                                     
@@ -133,43 +133,64 @@
                                 
                             <?php
 
-                                    $listaIngredientes = json_decode($menu["productos"],true);
-                                    
-                                    foreach($listaIngredientes as $key => $value){
+                            $idMenu = $_GET["idMenu"];
+                            $ingredientes = ModeloViandas::mdlObtenerIngredientes($idMenu);
+                            
 
+                                    $listaIngredientes = json_encode($ingredientes);
+
+                                 
+
+                                    $json = json_decode($listaIngredientes,true);
+
+                                    foreach($json as $value){
+
+                                    
                                         $item = "id";
-                                        $valor = $value["id"];
+                                        $valor = $value["id_ingrediente"];
 
                                         $respuesta = ControladorIngredientes::ctrMostrarIngredientes($item,$valor);
 
+                                     
+
+                                        $precioporunidad = $respuesta["precio"];
+                                        $nombreingrediente = $respuesta["nombre"];
+                                        $cantidad = $value["cantidad"];
+
+                                            $tabla = "unidades";
+                                            $valor2 = $respuesta["id_unidad"];
+                                            $respuesta2 = ModeloUnidades::mdlMostrarUnidades($tabla,$item,$valor2);
+                                           
+                                            $unidad = $respuesta2["nomenclatura"];
+
                                         echo '<div class="row listaIngredientes">
                                         
-                                                    <div class="col-6"> 
+                                                    <div class="col-s-12 col-lg-6"> 
                                                         <div class="input-group">
                                         
-                                                            <span class="input-group-text"><button type="button" class="btn btn-danger btn-xs quitarIngrediente" idIngrediente="'.$value["id"].'"><i class="fa fa-times"></i></button></span>
+                                                            <span class="input-group-text"><button type="button" class="btn btn-danger btn-xs quitarIngrediente" idIngrediente="'.$value["id_ingrediente"].'"><i class="fa fa-times"></i></button></span>
                                                             
                                                             <select class="form-control nuevoNombreIngrediente" id="ingrediente" style="min-height:50px" name="nuevoNombreIngrediente" required readonly>
-                                                                <option class="idIngredienteEditar" value="'.$value["id"].'" required>'.$value["ingrediente"].'</option>
+                                                                <option class="idIngredienteEditar" value="'.$value["id_ingrediente"].'" required>'.$nombreingrediente.'</option>
                                                             
                                                             </select>
                                                         </div>
                                                     </div>
                                         
-                                                    <div class="col-2 ingresoCantidad">
-                                                        <input type="number" class="form-control nuevaCantidadIngrediente" name="nuevaCantidadIngrediente" min="1" value="'.$value["cantidad"].'" required>
+                                                    <div class="col-sm-6 col-lg-2 ingresoCantidad">
+                                                        <input type="number" class="form-control nuevaCantidadIngrediente" name="nuevaCantidadIngrediente" min="1" value="'.$cantidad.'" required>
                                                         <span class="small text-muted">&nbsp; Ingrese cantidad</span>
                                                     </div>
                                         
-                                                    <div class="col-1 div-unidad">
-                                                        <input type="text" class="form-control unidad-de-medida" value="'.$value["unidad"].'" readonly required>
+                                                    <div class="col-sm-6 col-lg-2  div-unidad">
+                                                        <input type="text" class="form-control unidad-de-medida" value="'.$unidad.'" readonly required>
                                                         <span class="small text-muted">&nbsp; Unidad de medida</span>
                                                     </div>
                                         
-                                                    <div class="col-3 ingresoPrecio">
+                                                    <div class="col-sm-12 col-lg-2  ingresoPrecio">
                                                         <div class="input-group">
                                                             <span class="input-group-text"><i class="fas fa-money-bill-alt"></i></span>
-                                                            <input type="text" class="form-control precioIngrediente" precioReal="'.$respuesta["precio"].'" name="precioIngrediente" value="'.$value["precio"].'" readonly>
+                                                            <input type="text" class="form-control precioIngrediente" precioReal="'.$precioporunidad.'" name="precioIngrediente" value="'.($precioporunidad * $cantidad).'" readonly>
                                                         </div>
                                                         <span class="small text-muted">Costo</span>
                                                     </div> 
@@ -202,6 +223,9 @@
 
                             <!-- FORMULARIO PRECIO COSTO MENU -->
 
+                            <?php
+                            $precio = ModeloViandas::mdlCalcularCosto($idMenu);
+                            ?>
                             <div class="row">
                                 <div class="col-12">
                                     <table class="float-right">
@@ -213,7 +237,7 @@
                                                     <span class="input-group-text"><i
                                                             class="fas fa-money-bill-alt"></i></span>
                                                     <input type="text" class="form-control form-control-lg"
-                                                        id="nuevoPrecioMenu" name="nuevoPrecioMenu" value="<?php echo $menu["costo"]; ?>"
+                                                        id="nuevoPrecioMenu" name="nuevoPrecioMenu" value="<?php echo $precio; ?>"
                                                         required readonly>
 
                                                 </div><span class="text-success">Costo total del menú</span>

@@ -29,7 +29,7 @@ $(".btnAgregarIngrediente").click(function() {
                 $(".nuevoIngredienteMenu").append(
 
                     '<div class="row listaIngredientes">' +
-                    '<div class="col-6">' +
+                    '<div class="col-sm-12 col-lg-6">' +
                     ' <div class="input-group">' +
 
                     '<span class="input-group-text"><button type="button" class="btn btn-danger btn-xs quitarIngrediente" idIngrediente><i class="fa fa-times"></i></button></span>' +
@@ -43,13 +43,13 @@ $(".btnAgregarIngrediente").click(function() {
                     '</div>' +
                     '</div>' +
 
-                    '<div class="col-2 ingresoCantidad">' +
+                    '<div class="col-sm-6 col-lg-2 ingresoCantidad">' +
                     '<input type="number" class="form-control nuevaCantidadIngrediente" name="nuevaCantidadIngrediente" min="1" placeholder="0" required>' +
 
                     ' <span class="small text-muted">&nbsp; Ingrese cantidad</span>' +
                     '</div>' +
 
-                    '<div class="col-1 div-unidad">' +
+                    '<div class="col-sm-6 col-lg-2 div-unidad">' +
                     '<input type="text" class="form-control unidad-de-medida" readonly required>' +
 
                     ' <span class="small text-muted">&nbsp; Unidad de medida</span>' +
@@ -57,7 +57,7 @@ $(".btnAgregarIngrediente").click(function() {
 
 
 
-                    '<div class="col-3 ingresoPrecio">' +
+                    '<div class="col-sm-12 col-lg-2 ingresoPrecio">' +
 
                     '<div class="input-group">' +
 

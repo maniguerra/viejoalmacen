@@ -31,8 +31,8 @@
 
 
 
-            <div class="card-body">
-                <table class="table table-bordered table-striped dt-responsive  tablaIngredientes" width="100%">
+            <div class="modal-body">
+                <table class="table table-bordered table-striped dt-responsive tablaIngredientes" width="100%">
 
                     <thead>
                         <tr>
@@ -44,7 +44,9 @@
                         </tr>
                     </thead>
 
-
+                    <tbody>
+                        
+                    </tbody>
 
 
                 </table>
@@ -81,7 +83,6 @@ MODAL AGREGAR INGREDIENTE
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="card-body">
                         <div class="form-group">
 
                             <!-- Entrada para el nombre de ingrediente -->
@@ -132,29 +133,13 @@ MODAL AGREGAR INGREDIENTE
                                                 class="fas fa-weight-hanging"></i></span>
                                     </div>
 
-                                    <select class="form-control" name="nuevaUnidad" required>
-                                        <option value="">Seleccionar Unidad de Medida</option>
+                                  
 
-                                        <?php
-
-                            $item = null;
-                            $valor = null;
-
-                            $unidades = ControladorUnidades::ctrMostrarUnidades($item, $valor);
-
-
-                            foreach ($unidades as $key => $value){
-                                
-                                echo '
-                                <option value='.$value["id"].'>'.$value["nombre"].' ('.$value["nomenclatura"].')</option>
-                                ';}
-
-                                
-
-                        ?>
-
-
-                                    </select>
+                                    <select class="form-control" name="nuevaUnidad">
+                                        <option value="1">Kilo</option>
+                                        <option value="2">Litro</option>
+                                        <option value="3">Unidad</option>
+                                    </option></select>
 
                                 </div>
 
@@ -165,17 +150,8 @@ MODAL AGREGAR INGREDIENTE
 
 
                         </div>
-                        <br>
-                        <hr>
-                        <div class="calculadora">
-                            <span class="text-danger d-flex justify-content-center mt-2 mb-2">Calculadora de Costo</span>
-                            <span class="text-muted small d-flex justify-content-center mb-1">Des esta forma usted podrá calcular el costo por milésima</span>
-                                <input class="form-control" type="text" id="preciokilo" placeholder="0">
-                                <span class="text-info small d-flex justify-content-center">Ingrese precio por Kilo/Litro</span><br>
-                                <input class="form-control" type="text" id="preciogramo" placeholder="0">
-                                <span class="text-info small d-flex justify-content-center">Este es el precio por Gramo/Centímetro Cúbico</span>
-                        </div>
-                    </div>
+                       
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -215,7 +191,7 @@ MODAL EDITAR INGREDIENTE
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="card-body">
+                   
                         <div class="form-group">
                             <!-- Entrada para el nombre de Ingrediente -->
                             <div class="form-group">
@@ -265,28 +241,11 @@ MODAL EDITAR INGREDIENTE
                                     </div>
 
                                     <select class="form-control" name="editarUnidad">
-
-
-                                        <?php
-
-                            $item = null;
-                            $valor = null;
-
-                            $unidades = ControladorUnidades::ctrMostrarUnidades($item, $valor);
-
-                            echo '<option value="" id="editarUnidad">Aca ira la unidad</option>';
-                            foreach ($unidades as $key => $value){
-                                
-                                echo '
-                                <option value='.$value["id"].'>'.$value["nombre"].' ('.$value["nomenclatura"].')</option>
-                                ';}
-
-                                
-
-                            ?>
-
-
-                                    </select>
+                                        <option id="editarUnidad" value=""></option>
+                                        <option value="1">Kilo</option>
+                                        <option value="2">Litro</option>
+                                        <option value="3">Unidad</option>
+                                    </option></select>
 
                                 </div>
 
@@ -295,17 +254,7 @@ MODAL EDITAR INGREDIENTE
 
 
                         </div>
-                        <br>
-                        <hr>
-                        <div class="calculadora">
-                            <span class="text-danger d-flex justify-content-center mt-2 mb-2">Calculadora de Costo</span>
-                            <span class="text-muted small d-flex justify-content-center mb-1">Des esta forma usted podrá calcular el costo por milésima</span>
-                                <input class="form-control" type="text" id="preciokiloedt" placeholder="0">
-                                <span class="text-info small d-flex justify-content-center">Ingrese precio por Kilo/Litro</span><br>
-                                <input class="form-control" type="text" id="preciogramoedt">
-                                <span class="text-info small d-flex justify-content-center">Este es el precio por Gramo/Centímetro Cúbico</span>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

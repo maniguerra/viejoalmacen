@@ -31,7 +31,7 @@
 
 
 
-            <div class="card-body">
+            <div class="modal-body">
                 <table class="table table-bordered table-striped dt-responsive tablas tablaUnidades" width="100%">
 
                     <thead>
